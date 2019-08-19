@@ -1,0 +1,38 @@
+user@ubuntu-16:~$ sudo apt-get install rng-tools
+[sudo] password for user:
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  linux-signed-image-generic
+Use 'sudo apt autoremove' to remove it.
+The following NEW packages will be installed:
+  rng-tools
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 21.9 kB of archives.
+After this operation, 139 kB of additional disk space will be used.
+Get:1 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 rng-tools amd64 5-0ubuntu3 [21.9 kB]
+Fetched 21.9 kB in 0s (50.1 kB/s)
+Selecting previously unselected package rng-tools.
+(Reading database ... 92923 files and directories currently installed.)
+Preparing to unpack .../rng-tools_5-0ubuntu3_amd64.deb ...
+Unpacking rng-tools (5-0ubuntu3) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for ureadahead (0.100.0-19.1) ...
+Processing triggers for systemd (229-4ubuntu21.22) ...
+Setting up rng-tools (5-0ubuntu3) ...
+Processing triggers for ureadahead (0.100.0-19.1) ...
+Processing triggers for systemd (229-4ubuntu21.22) ...
+user@ubuntu-16:~$ pgrep -a rng
+1977 /usr/sbin/rngd -r /dev/hwrng
+user@ubuntu-16:~$ sudo systemctl status rng-tools
+● rng-tools.service
+   Loaded: loaded (/etc/init.d/rng-tools; bad; vendor preset: enabled)
+   Active: active (running) since Fri 2019-08-16 13:31:42 MST; 51s ago
+     Docs: man:systemd-sysv-generator(8)
+   CGroup: /system.slice/rng-tools.service
+           └─1977 /usr/sbin/rngd -r /dev/hwrng
+
+Aug 16 13:31:42 ubuntu-16 systemd[1]: Starting rng-tools.service...
+Aug 16 13:31:42 ubuntu-16 rng-tools[1975]: Starting Hardware RNG entropy gatherer daemon: rngd.
+Aug 16 13:31:42 ubuntu-16 systemd[1]: Started rng-tools.service.

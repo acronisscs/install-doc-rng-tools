@@ -1,0 +1,53 @@
+[user@centos-6 ~]$ sudo yum install rng-tools
+Loaded plugins: fastestmirror
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * base: mirror.nodesdirect.com
+ * extras: centos-distro.cavecreek.net
+ * updates: mirror.nodesdirect.com
+Resolving Dependencies
+--> Running transaction check
+---> Package rng-tools.x86_64 0:5-2.el6_7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+====================================================================================================
+ Package                  Arch                  Version                   Repository           Size
+====================================================================================================
+Installing:
+ rng-tools                x86_64                5-2.el6_7                 base                 32 k
+
+Transaction Summary
+====================================================================================================
+Install       1 Package(s)
+
+Total download size: 32 k
+Installed size: 62 k
+Is this ok [y/N]: y
+Downloading Packages:
+rng-tools-5-2.el6_7.x86_64.rpm                                               |  32 kB     00:00
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : rng-tools-5-2.el6_7.x86_64                                                       1/1
+  Verifying  : rng-tools-5-2.el6_7.x86_64                                                       1/1
+
+Installed:
+  rng-tools.x86_64 0:5-2.el6_7
+
+Complete!
+[user@centos-6 ~]$ sudo chkconfig rngd on
+[user@centos-6 ~]$ sudo chkconfig rngd --list
+rngd            0:off   1:off   2:on    3:on    4:on    5:on    6:off
+[user@centos-6 ~]$ sudo service rngd start
+Starting rngd: Unable to open file: /dev/tpm0
+                                                           [  OK  ]
+[user@centos-6 ~]$ sudo service rngd status
+rngd (pid  1471) is running...
+[user@centos-6 ~]$ sudo rngd -v
+Unable to open file: /dev/tpm0
+Available entropy sources:
+        DRNG
+[user@centos-6 ~]$

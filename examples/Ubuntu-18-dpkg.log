@@ -1,0 +1,24 @@
+user@ubuntu-18:~$ ls -l /tmp/rng-tools_5-0ubuntu4_amd64.deb
+-rw-rw-r-- 1 user user 22484 Aug 19 17:17 /tmp/rng-tools_5-0ubuntu4_amd64.deb
+user@ubuntu-18:~$ sudo dpkg -i /tmp/rng-tools_5-0ubuntu4_amd64.deb
+Selecting previously unselected package rng-tools.
+(Reading database ... 127631 files and directories currently installed.)
+Preparing to unpack .../rng-tools_5-0ubuntu4_amd64.deb ...
+Unpacking rng-tools (5-0ubuntu4) ...
+Setting up rng-tools (5-0ubuntu4) ...
+Processing triggers for systemd (237-3ubuntu10.25) ...
+Processing triggers for ureadahead (0.100.0-21) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+user@ubuntu-18:~$ sudo systemctl status rng-tools
+● rng-tools.service
+   Loaded: loaded (/etc/init.d/rng-tools; generated)
+   Active: active (running) since Mon 2019-08-19 17:18:24 UTC; 11s ago
+     Docs: man:systemd-sysv-generator(8)
+    Tasks: 1 (limit: 2277)
+   CGroup: /system.slice/rng-tools.service
+           └─1684 /usr/sbin/rngd -r /dev/hwrng
+
+Aug 19 17:18:24 ubuntu-18 systemd[1]: Starting rng-tools.service...
+Aug 19 17:18:24 ubuntu-18 rng-tools[1682]: Starting Hardware RNG entropy gatherer daemon: rngd.
+Aug 19 17:18:24 ubuntu-18 systemd[1]: Started rng-tools.service.
+

@@ -1,0 +1,60 @@
+[user@centos-7 ~]$ ls -l /tmp/rng-tools-6.3.1-3.el7.x86_64.rpm
+-rw-rw-r--. 1 user user 50440 Aug 19 14:01 /tmp/rng-tools-6.3.1-3.el7.x86_64.rpm
+[user@centos-7 ~]$ sudo yum localinstall -y /tmp/rng-tools-6.3.1-3.el7.x86_64.rpm
+Loaded plugins: fastestmirror
+Examining /tmp/rng-tools-6.3.1-3.el7.x86_64.rpm: rng-tools-6.3.1-3.el7.x86_64
+Marking /tmp/rng-tools-6.3.1-3.el7.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package rng-tools.x86_64 0:6.3.1-3.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+====================================================================================================
+ Package           Arch           Version               Repository                             Size
+====================================================================================================
+Installing:
+ rng-tools         x86_64         6.3.1-3.el7           /rng-tools-6.3.1-3.el7.x86_64         102 k
+
+Transaction Summary
+====================================================================================================
+Install  1 Package
+
+Total size: 102 k
+Installed size: 102 k
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : rng-tools-6.3.1-3.el7.x86_64                                                     1/1
+  Verifying  : rng-tools-6.3.1-3.el7.x86_64                                                     1/1
+
+Installed:
+  rng-tools.x86_64 0:6.3.1-3.el7
+
+Complete!
+[user@centos-7 ~]$ sudo systemctl start rngd
+[user@centos-7 ~]$ sudo systemctl status rngd
+● rngd.service - Hardware RNG Entropy Gatherer Daemon
+   Loaded: loaded (/usr/lib/systemd/system/rngd.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2019-08-19 14:03:09 MST; 3s ago
+ Main PID: 1767 (rngd)
+   CGroup: /system.slice/rngd.service
+           └─1767 /sbin/rngd -f
+
+Aug 19 14:03:09 centos-7.hyper-v.local systemd[1]: Started Hardware RNG Entropy Gatherer Daemon.
+Aug 19 14:03:09 centos-7.hyper-v.local rngd[1767]: Initalizing available sources
+Aug 19 14:03:09 centos-7.hyper-v.local rngd[1767]: Failed to init entropy source 0: Hardware R...ce
+Aug 19 14:03:09 centos-7.hyper-v.local rngd[1767]: Enabling RDSEED rng support
+Aug 19 14:03:09 centos-7.hyper-v.local rngd[1767]: JITTER rng fails with code 2
+Aug 19 14:03:09 centos-7.hyper-v.local rngd[1767]: Failed to init entropy source 5: JITTER Ent...or
+Hint: Some lines were ellipsized, use -l to show in full.
+[user@centos-7 ~]$ rngd -l
+Entropy sources that are available but disabled
+1: TPM RNG Device
+4: NIST Network Entropy Beacon
+Available and enabled entropy sources:
+2: Intel RDRAND Instruction RNG
+[user@centos-7 ~]$

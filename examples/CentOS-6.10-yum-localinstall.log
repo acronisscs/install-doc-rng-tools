@@ -1,0 +1,58 @@
+[user@centos-6 ~]$ ls -l /tmp/rng-tools-5-2.el6_7.x86_64.rpm
+-rw-rw-r--. 1 user user 32920 Aug 19 13:05 /tmp/rng-tools-5-2.el6_7.x86_64.rpm
+[user@centos-6 ~]$ sudo yum localinstall /tmp/rng-tools-5-2.el6_7.x86_64.rpm
+Loaded plugins: fastestmirror
+Setting up Local Package Process
+Examining /tmp/rng-tools-5-2.el6_7.x86_64.rpm: rng-tools-5-2.el6_7.x86_64
+Marking /tmp/rng-tools-5-2.el6_7.x86_64.rpm to be installed
+Loading mirror speeds from cached hostfile
+ * base: mirror.nodesdirect.com
+ * extras: centos-distro.cavecreek.net
+ * updates: mirror.nodesdirect.com
+Resolving Dependencies
+--> Running transaction check
+---> Package rng-tools.x86_64 0:5-2.el6_7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+====================================================================================================
+ Package            Arch            Version              Repository                            Size
+====================================================================================================
+Installing:
+ rng-tools          x86_64          5-2.el6_7            /rng-tools-5-2.el6_7.x86_64           62 k
+
+Transaction Summary
+====================================================================================================
+Install       1 Package(s)
+
+Total size: 62 k
+Installed size: 62 k
+Is this ok [y/N]: y
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : rng-tools-5-2.el6_7.x86_64                                                       1/1
+  Verifying  : rng-tools-5-2.el6_7.x86_64                                                       1/1
+
+Installed:
+  rng-tools.x86_64 0:5-2.el6_7
+
+Complete!
+[user@centos-6 ~]$ sudo chkconfig --list rngd
+rngd            0:off   1:off   2:off   3:off   4:off   5:off   6:off
+[user@centos-6 ~]$ sudo chkconfig rngd on
+[user@centos-6 ~]$ sudo chkconfig --list rngd
+rngd            0:off   1:off   2:on    3:on    4:on    5:on    6:off
+[user@centos-6 ~]$ sudo service rngd start
+Starting rngd: Unable to open file: /dev/tpm0
+                                                           [  OK  ]
+[user@centos-6 ~]$ sudo service rngd status
+rngd (pid  1502) is running...
+[user@centos-6 ~]$ sudo rngd -v
+Unable to open file: /dev/tpm0
+Available entropy sources:
+        DRNG
+[user@centos-6 ~]$
