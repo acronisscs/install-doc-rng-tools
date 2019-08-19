@@ -26,9 +26,9 @@ If the system(s) do not have sufficient network connectivity to allow for an onl
 
 Download the rpm from the distribution provider.
 
-[Redhat Enterprise Linux](https://access.redhat.com/solutions/6996)
-[CentOS 6](http://mirror.centos.org/centos/6/os/x86_64/Packages/)
-[CentOS 7](http://mirror.centos.org/centos/7/os/x86_64/Packages/)
+* [Redhat Enterprise Linux](https://access.redhat.com/solutions/6996)
+* [CentOS 6](http://mirror.centos.org/centos/6/os/x86_64/Packages/)
+* [CentOS 7](http://mirror.centos.org/centos/7/os/x86_64/Packages/)
 
 ```
 sudo yum localinstall -y /tmp/rng-tools-$VERSION.rpm
@@ -48,8 +48,8 @@ sudo apt-get rng-tools
 
 
 rng-tools package can be downloaded from:
-[Ubuntu 16.04](https://packages.ubuntu.com/xenial/rng-tools)
-[Ubuntu 18.04](https://packages.ubuntu.com/bionic/rng-tools)
+* [Ubuntu 16.04](https://packages.ubuntu.com/xenial/rng-tools)
+* [Ubuntu 18.04](https://packages.ubuntu.com/bionic/rng-tools)
 
 ```bash
 sudo dpkg -i /tmp/rng-tools_$VERSION.deb
