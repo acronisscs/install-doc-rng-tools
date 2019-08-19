@@ -55,6 +55,27 @@ rng-tools package can be downloaded from:
 sudo dpkg -i /tmp/rng-tools_$VERSION.deb
 ```
 
+## dnf package manager
+
+The dnf package manager was introduced in Fedora 18 and is intented to be the successor to YUM.
+
+### dnf online installation
+
+```bash
+sudo dnf install rng-tools
+```
+
+### dnf offline installation
+
+Download Fedora rng-tools rpm from [fedoraproject.org](https://apps.fedoraproject.org/packages/rng-tools)
+At the time of this writing, there are two dependencies:
+1. jitterentropy
+2. libsysfs
+
+```bash
+sudo dnf install -y /tmp/jitterentropy-$VERSION.rpm /tmp/libsysfs-$VERSION.rpm /tmp/rng-tools-$VERSION.rpm
+```
+
 ## Starting Systemd service
 
 Start rngd systemd service Redhat Enterprise Linux 7+, CentOS 7+
@@ -78,11 +99,13 @@ sudo service rngd start
 
 ## Examples
 
-[Ubuntu 16.04 online](examples/Ubuntu-16-apt-get.log)
-[Ubuntu 16.04 offline](examples/Ubuntu-16-dpkg.log)
-[Ubuntu 18.04 online](examples/Ubuntu-18-apt-get.log)
-[Ubuntu 18.04 offline](examples/Ubuntu-18-dpkg.log)
-[CentOS 6.10 online](examples/CentOS-6.10-yum.log)
-[CentOS 6.10 offline](examples/CentOS-6.10-yum-localinstall.log)
-[CentOS 7.6.1810 online](examples/CentOS-7.6.1810-yum.log)
-[CentOS 7.6.1810 offline](examples/CentOS-7.6.1810-yum-localinstall.log)
+* [Ubuntu 16.04 online](examples/Ubuntu-16-apt-get.log)
+* [Ubuntu 16.04 offline](examples/Ubuntu-16-dpkg.log)
+* [Ubuntu 18.04 online](examples/Ubuntu-18-apt-get.log)
+* [Ubuntu 18.04 offline](examples/Ubuntu-18-dpkg.log)
+* [CentOS 6.10 online](examples/CentOS-6.10-yum.log)
+* [CentOS 6.10 offline](examples/CentOS-6.10-yum-localinstall.log)
+* [CentOS 7.6.1810 online](examples/CentOS-7.6.1810-yum.log)
+* [CentOS 7.6.1810 offline](examples/CentOS-7.6.1810-yum-localinstall.log)
+* [Fedora 30 online](examples/Fedora-30-dnf.log)
+* [Fedora 30 offline](examples/Fedora-30-dnf-offline.log)

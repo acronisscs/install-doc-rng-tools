@@ -1,0 +1,73 @@
+[user@fedora-30 ~]$ ls -l /tmp/*.rpm
+-rw-rw-r--. 1 user user 21264 Aug 19 16:26 /tmp/jitterentropy-2.1.2-4.fc30.x86_64.rpm
+-rw-rw-r--. 1 user user 32340 Aug 19 16:26 /tmp/libsysfs-2.1.0-26.fc30.x86_64.rpm
+-rw-rw-r--. 1 user user 53852 Aug 19 16:18 /tmp/rng-tools-6.7-2.fc30.x86_64.rpm
+[user@fedora-30 ~]$ sudo dnf install /tmp/*.rpm
+Last metadata expiration check: 0:45:02 ago on Mon 19 Aug 2019 03:42:52 PM MST.
+Dependencies resolved.
+====================================================================================================
+ Package                  Architecture      Version                   Repository               Size
+====================================================================================================
+Installing:
+ jitterentropy            x86_64            2.1.2-4.fc30              @commandline             21 k
+ libsysfs                 x86_64            2.1.0-26.fc30             @commandline             32 k
+ rng-tools                x86_64            6.7-2.fc30                @commandline             53 k
+
+Transaction Summary
+====================================================================================================
+Install  3 Packages
+
+Total size: 105 k
+Installed size: 282 k
+Is this ok [y/N]: y
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                            1/1
+  Installing       : libsysfs-2.1.0-26.fc30.x86_64                                              1/3
+  Installing       : jitterentropy-2.1.2-4.fc30.x86_64                                          2/3
+  Installing       : rng-tools-6.7-2.fc30.x86_64                                                3/3
+  Running scriptlet: rng-tools-6.7-2.fc30.x86_64                                                3/3
+  Verifying        : jitterentropy-2.1.2-4.fc30.x86_64                                          1/3
+  Verifying        : libsysfs-2.1.0-26.fc30.x86_64                                              2/3
+  Verifying        : rng-tools-6.7-2.fc30.x86_64                                                3/3
+
+Installed:
+  jitterentropy-2.1.2-4.fc30.x86_64   libsysfs-2.1.0-26.fc30.x86_64   rng-tools-6.7-2.fc30.x86_64
+
+Complete!
+[user@fedora-30 ~]$ sudo systemctl start rngd
+[user@fedora-30 ~]$ sudo systemctl status rngd
+● rngd.service - Hardware RNG Entropy Gatherer Daemon
+   Loaded: loaded (/usr/lib/systemd/system/rngd.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2019-08-19 16:28:09 MST; 3s ago
+ Main PID: 2821 (rngd)
+    Tasks: 1 (limit: 2272)
+   Memory: 1.0M
+   CGroup: /system.slice/rngd.service
+           └─2821 /sbin/rngd -f
+
+Aug 19 16:28:09 fedora-30.hyper-v.local systemd[1]: Started Hardware RNG Entropy Gatherer Daemon.
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: Initalizing available sources
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: Failed to init entropy source hwrng
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: Enabling RDSEED rng support
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: Initalizing entropy source rdrand
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: JITTER rng fails with code 2
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: Failed to init entropy source jitter
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: No pkcs11 slots available
+Aug 19 16:28:09 fedora-30.hyper-v.local rngd[2821]: Failed to init entropy source pkcs11
+[user@fedora-30 ~]$ rngd -l
+Entropy sources that are available but disabled
+
+1: TPM RNG Device (tpm)
+
+4: NIST Network Entropy Beacon (nist)
+
+Available and enabled entropy sources:
+
+2: Intel RDRAND Instruction RNG (rdrand)
+
+[user@fedora-30 ~]$
